@@ -26,11 +26,11 @@ class BookService {
     }
     getBookInfo(bookId) {
         const book = this.getBookById(bookId);
-        return book ? book : null;
+        return book;
     }
     getAuthorInfo(authorId) {
         const author = this.getAuthorById(authorId);
-        return author ? author : null;
+        return author;
     }
     getBookTitle(idBook) {
         const book = this.getBookById(idBook);

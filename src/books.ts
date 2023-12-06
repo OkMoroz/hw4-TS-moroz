@@ -43,12 +43,12 @@ class BookService implements IBookService {
 
   getBookInfo(bookId: number): IBook | null {
     const book = this.getBookById(bookId);
-    return book ? book : null;
+    return book;
   }
 
   getAuthorInfo(authorId: number): IAuthor | null {
     const author = this.getAuthorById(authorId);
-    return author ? author : null;
+    return author;
   }
 
   getBookTitle(idBook: number): string {
