@@ -12,8 +12,8 @@ interface IBook {
   pages: number;
 }
 interface IBookService {
-  getBookInfo: (bookId: number) => IBook | undefined;
-  getAuthorInfo: (authorId: number) => IAuthor | undefined;
+  getBookInfo: (bookId: number) => IBook | null;
+  getAuthorInfo: (authorId: number) => IAuthor | null;
   getBookTitle(idBook: number): string;
 }
 class BookService implements IBookService {
@@ -41,14 +41,14 @@ class BookService implements IBookService {
     { id: 2, name: "Author Ukrainian", birthYear: 1991 },
   ];
 
-  getBookInfo(bookId: number): IBook | undefined {
+  getBookInfo(bookId: number): IBook | null {
     const book = this.getBookById(bookId);
-    return book ? book : undefined;
+    return book ? book : null;
   }
 
-  getAuthorInfo(authorId: number): IAuthor | undefined {
+  getAuthorInfo(authorId: number): IAuthor | null {
     const author = this.getAuthorById(authorId);
-    return author ? author : undefined;
+    return author ? author : null;
   }
 
   getBookTitle(idBook: number): string {
@@ -56,12 +56,14 @@ class BookService implements IBookService {
     return book ? book.title : "Sorry. This book not was found";
   }
 
-  private getBookById(bookId: number): IBook | undefined {
-    return this._books.find((book) => book.id === bookId);
+  private getBookById(bookId: number): IBook | null {
+    const foundBook = this._books.find((book) => book.id === bookId);
+    return foundBook !== undefined ? foundBook : null;
   }
 
-  private getAuthorById(authorId: number): IAuthor | undefined {
-    return this._authors.find((author) => author.id === authorId);
+  private getAuthorById(authorId: number): IAuthor | null {
+    const foundAuthor = this._authors.find((author) => author.id === authorId);
+    return foundAuthor !== undefined ? foundAuthor : null;
   }
 }
 
