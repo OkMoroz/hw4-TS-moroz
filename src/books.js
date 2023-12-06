@@ -26,21 +26,23 @@ class BookService {
     }
     getBookInfo(bookId) {
         const book = this.getBookById(bookId);
-        return book ? book : undefined;
+        return book ? book : null;
     }
     getAuthorInfo(authorId) {
         const author = this.getAuthorById(authorId);
-        return author ? author : undefined;
+        return author ? author : null;
     }
     getBookTitle(idBook) {
         const book = this.getBookById(idBook);
         return book ? book.title : "Sorry. This book not was found";
     }
     getBookById(bookId) {
-        return this._books.find((book) => book.id === bookId);
+        const foundBook = this._books.find((book) => book.id === bookId);
+        return foundBook !== undefined ? foundBook : null;
     }
     getAuthorById(authorId) {
-        return this._authors.find((author) => author.id === authorId);
+        const foundAuthor = this._authors.find((author) => author.id === authorId);
+        return foundAuthor !== undefined ? foundAuthor : null;
     }
 }
 const myBookService = new BookService();
